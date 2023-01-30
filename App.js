@@ -1,47 +1,193 @@
+import "react-native-gesture-handler"
 import { StatusBar } from "expo-status-bar";
 import React, {useState} from "react";
 import { Button, Text, TextInput, View, Image, ScrollView, FlatList, SectionList, StyleSheet } from "react-native";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-export default function App() {
+
+
+function HomeScreen({ navigation }) {
   return (
-    <View style = {styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar styles = "auto" />
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Home Screen</Text>
+      <Button onPress={() => navigation.navigate('Ships')} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+function ShipScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Ship screen</Text>
+    </View>
+  );
+}
+
+function ItemScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Items</Text>
+    </View>
+  );
+}
+
+function StarMapScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Star Map screen</Text>
+    </View>
+  );
+}
+
+function MiningScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Mining screen</Text>
+    </View>
+  );
+}
+
+function GuidesScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Guides screen</Text>
+    </View>
+  );
+}
+
+function TradingScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Trading screen</Text>
+    </View>
+  );
+}
+
+function LoadoutScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Loadout Manager screen</Text>
+    </View>
+  );
+}
+
+
+function App() {
+  return(
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home">
+
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Ships" component={ShipScreen} />
+        <Stack.Screen name="Items" component={ItemScreen} />
+        <Stack.Screen name="Star Map" component={StarMapScreen} />
+        <Stack.Screen name="Mining" component={MiningScreen} />
+        <Stack.Screen name="Guides" component={GuidesScreen} />
+        <Stack.Screen name="Trading" component={TradingScreen} />
+        <Stack.Screen name="Loadout" component={LoadoutScreen} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+
+export default App;
+
+
+//#151E7A
+
+
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Feed" component={Feed} />
+      <Drawer.Screen name="Article" component={Article} />
+    </Drawer.Navigator>
+  );
+}
+
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
+
+
+// inside of render() of react class
+<Button
+  title="Update the title"
+  onPress={() => navigation.setOptions({ title: "Updated!" })}
+/>
+
+
+// function LogoTitle() {
+//   return (
+//     <Image
+//       style={{ width: 50, height: 50 }}
+//       source={require("@expo/snack-static/react-native-logo.png")}
+//     />
+//   );
+// }
+
+// function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator 
+//         initialRouteName="Home"
+//         screenOptions={{
+//           headerStyle: {
+//             backgroundColor: "#f4511e",
+//           },
+//         }}
+//       >
+//         <Stack.Screen
+//           name="Home"
+//           component={HomeScreen}
+//           options={{ 
+//             title: "My home",
+//             headerTintColor: "#fff",
+//             headerTitle: (props) => <LogoTitle {...props} />,
+//             headerRight: () => (
+//               <Button
+//                 onPress={() => alert("This is a button!")}
+//                 title="Info"
+//                 color="#fff"
+//               />
+//             ),
+//           }}
+//         />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
 
 
 
@@ -217,6 +363,84 @@ const styles = StyleSheet.create({
 //         )}
 //         keyExtractor={item => `basicListEntry-${item}`}
 //         />
+//     </View>
+//   )
+// }
+
+// function HomeScreen({ navigation, route }) {
+//   React.useEffect(() => {
+//     if (route.params?.post) {
+//       // Post updated, do something with "route.params.post"
+//       // For example, send the post to the server
+//     }
+//   }, [route.params?.post]);
+//   return(
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
+//       <Text>Home Screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => {
+//           // Navigate to the Details route with params
+//           navigation.navigate("Details", {
+//             itemId: 86,
+//             otherParam: "anything you want here",
+//           });
+//         }}
+//       />
+//       <Button
+//         title="Create post"
+//         onPress={() => navigation.navigate("CreatePost")}
+//       />
+//       <Text style={{ margin: 10 }}>Post: {route.params?.post}</Text>
+//     </View>
+//   );
+// }
+
+// function CreatePostScreen({ navigation, route }) {
+//   const [postText, setPostText] = React.useState("");
+
+//   return (
+//     <>
+//       <TextInput
+//         multiline
+//         placeholder="What's on your mind?"
+//         style={{ height: 200, padding: 10, backgroundColor: "white" }}
+//         value={postText}
+//         onChangeText={setPostText}
+//       />
+//       <Button
+//         title="Done"
+//         onPress={() => {
+//           // Pass and merge params back to home screen
+//           navigation.navigate({
+//             name: "Home",
+//             params: { post: postText },
+//             merge: true,
+//           });
+//         }}
+//       />
+//     </>
+//   )
+// }
+
+// function DetailsScreen({ route, navigation }) {
+//   // Get the param
+//   const { itemId, otherParam } = route.params;
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
+//       <Text>Details Screen</Text>
+//       <Text>itemId: {JSON.stringify(itemId)}</Text>
+//       <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+//       <Button
+//         title="Go to Details... again"
+//         onPress={() => 
+//           navigation.push("Details", {
+//             itemId: Math.floor(Math.random() * 100),
+//           })
+//         }
+//       />
+//       <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
+//       <Button title="Go back" onPress={() => navigation.goBack()} />
 //     </View>
 //   )
 // }
