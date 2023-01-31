@@ -1,7 +1,7 @@
 import "react-native-gesture-handler"
 import { StatusBar } from "expo-status-bar";
 import React, {useState} from "react";
-import { Button, Text, TextInput, View, Image, ScrollView, FlatList, SectionList, StyleSheet } from "react-native";
+import { Button, Text, TextInput, View, Image, Pressable, ScrollView, FlatList, SectionList, StyleSheet } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -17,8 +17,18 @@ const Stack = createNativeStackNavigator();
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button onPress={() => navigation.navigate('Ships')} />
+      <Text style={styles.text}>Home Screen</Text>
+      <Button onPress={() => navigation.navigate('Ships')} title = "Ships" />
+      <Button onPress={() => navigation.navigate('Items')} title = "Items"/>
+      <Button onPress={() => navigation.navigate('Star Map')} title = "Star Map"/>
+      <Button onPress={() => navigation.navigate('Mining')} title = "Mining"/>
+      <Button onPress={() => navigation.navigate('Guides')} title = "Guides"/>
+      <Button onPress={() => navigation.navigate('Trading')} title = "Trading"/>
+      <Button onPress={() => navigation.navigate('Loadout')} title = "Loadout"/>
+
+      <Pressable style={styles.buttonLeft} onPress={() => navigation.navigate('Ships')}>
+        <Text style={styles.text}>Ships</Text>
+      </Pressable>
     </View>
   );
 }
@@ -102,6 +112,27 @@ function App() {
 
 
 export default App;
+
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
+  },
+  buttonLeft: {
+    flex: 0.2,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 5,
+    elevation: 1,
+    backgroundColor: "#151E7A",
+  }
+});
 
 
 //#151E7A
