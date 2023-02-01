@@ -31,7 +31,7 @@ function HomeScreen({ navigation }) {
         <Text style={styles.text}>Star Map</Text>
       </Pressable>
 
-      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Ships')}>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Mining')}>
         <Text style={styles.text}>Mining</Text>
       </Pressable>
 
@@ -52,7 +52,7 @@ function HomeScreen({ navigation }) {
 
 function ShipScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Text>Ship screen</Text>
     </View>
   );
@@ -60,7 +60,7 @@ function ShipScreen() {
 
 function ItemScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Text>Items screen</Text>
     </View>
   );
@@ -68,7 +68,7 @@ function ItemScreen() {
 
 function StarMapScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Text>Star Map screen</Text>
     </View>
   );
@@ -76,15 +76,72 @@ function StarMapScreen() {
 
 function MiningScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Mining screen</Text>
+    <View style={styles.container}>
+      {/* <Text>Mining screen</Text> */}
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Mining Calculator')}>
+        <Text style={styles.text}>Calculator</Text>
+      </Pressable>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Mining Guides')}>
+        <Text style={styles.text}>Guides</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+function MiningCalculatorScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Mining Calculator screen</Text>
     </View>
   );
 }
 
 function GuidesScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Mining Guides')}>
+        <Text style={styles.text}>Mining Guides</Text>
+      </Pressable>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Location Guides')}>
+        <Text style={styles.text}>Location Guides</Text>
+      </Pressable>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Bounty Guides')}>
+        <Text style={styles.text}>Bounty Guides</Text>
+      </Pressable>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Misc Guides')}>
+        <Text style={styles.text}>Misc Guides</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+function MiningGuidesScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Guides screen</Text>
+    </View>
+  );
+}
+
+function LocationGuidesScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Guides screen</Text>
+    </View>
+  );
+}
+
+function BountyGuidesScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Guides screen</Text>
+    </View>
+  );
+}
+
+function MiscGuidesScreen() {
+  return (
+    <View style={styles.container}>
       <Text>Guides screen</Text>
     </View>
   );
@@ -92,7 +149,7 @@ function GuidesScreen() {
 
 function TradingScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Text>Trading screen</Text>
     </View>
   );
@@ -100,7 +157,7 @@ function TradingScreen() {
 
 function LoadoutScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.container}>
       <Text>Loadout Manager screen</Text>
     </View>
   );
@@ -120,13 +177,21 @@ function App() {
       >
 
         <Stack.Screen name="Home" component={HomeScreen} options={{title: "Home", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Ships" component={ShipScreen} />
-        <Stack.Screen name="Items" component={ItemScreen} />
-        <Stack.Screen name="Star Map" component={StarMapScreen} />
-        <Stack.Screen name="Mining" component={MiningScreen} />
-        <Stack.Screen name="Guides" component={GuidesScreen} />
-        <Stack.Screen name="Trading" component={TradingScreen} />
-        <Stack.Screen name="Loadout" component={LoadoutScreen} />
+        <Stack.Screen name="Ships" component={ShipScreen} options={{title: "Ships", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Items" component={ItemScreen} options={{title: "Items", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Star Map" component={StarMapScreen} options={{title: "Star Map", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+
+        <Stack.Screen name="Mining" component={MiningScreen} options={{title: "Mining", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Mining Calculator" component={MiningCalculatorScreen} options={{title: "Mining Claculator", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+
+        <Stack.Screen name="Guides" component={GuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Mining Guides" component={MiningGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Location Guides" component={LocationGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Bounty Guides" component={BountyGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Misc Guides" component={MiscGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+
+        <Stack.Screen name="Trading" component={TradingScreen} options={{title: "Trading", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Loadout" component={LoadoutScreen} options={{title: "Loadouts", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
 
       </Stack.Navigator>
     </NavigationContainer>
