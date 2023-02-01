@@ -16,18 +16,35 @@ const Stack = createNativeStackNavigator();
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={styles.text}>Home Screen</Text>
-      <Button onPress={() => navigation.navigate('Ships')} title = "Ships" />
-      <Button onPress={() => navigation.navigate('Items')} title = "Items"/>
-      <Button onPress={() => navigation.navigate('Star Map')} title = "Star Map"/>
-      <Button onPress={() => navigation.navigate('Mining')} title = "Mining"/>
-      <Button onPress={() => navigation.navigate('Guides')} title = "Guides"/>
-      <Button onPress={() => navigation.navigate('Trading')} title = "Trading"/>
-      <Button onPress={() => navigation.navigate('Loadout')} title = "Loadout"/>
+    <View style={styles.container}>
+      {/* <Text style={styles.text}>Home Screen</Text> */}
 
-      <Pressable style={styles.buttonLeft} onPress={() => navigation.navigate('Ships')}>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Ships')}>
         <Text style={styles.text}>Ships</Text>
+      </Pressable>
+
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Items')}>
+        <Text style={styles.text}>Items</Text>
+      </Pressable>
+
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Star Map')}>
+        <Text style={styles.text}>Star Map</Text>
+      </Pressable>
+
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Ships')}>
+        <Text style={styles.text}>Mining</Text>
+      </Pressable>
+
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Guides')}>
+        <Text style={styles.text}>Guides</Text>
+      </Pressable>
+
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Trading')}>
+        <Text style={styles.text}>Trading</Text>
+      </Pressable>
+
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Loadout')}>
+        <Text style={styles.text}>Loadout</Text>
       </Pressable>
     </View>
   );
@@ -44,7 +61,7 @@ function ShipScreen() {
 function ItemScreen() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Items</Text>
+      <Text>Items screen</Text>
     </View>
   );
 }
@@ -93,8 +110,7 @@ function LoadoutScreen() {
 function App() {
   return(
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Home">
 
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Ships" component={ShipScreen} />
@@ -115,6 +131,13 @@ export default App;
 
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    padding: 20,
+    margin: 10,
+  },
   text: {
     fontSize: 16,
     lineHeight: 21,
@@ -122,48 +145,20 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
-  buttonLeft: {
-    flex: 0.2,
+  buttons: {
+    flex: 0.12,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 5,
-    elevation: 1,
+    borderRadius: 4,
+    elevation: 3,
     backgroundColor: "#151E7A",
   }
 });
 
 
 //#151E7A
-
-
-
-function MyDrawer() {
-  return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Feed" component={Feed} />
-      <Drawer.Screen name="Article" component={Article} />
-    </Drawer.Navigator>
-  );
-}
-
-
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
-  );
-}
-
-
-// inside of render() of react class
-<Button
-  title="Update the title"
-  onPress={() => navigation.setOptions({ title: "Updated!" })}
-/>
 
 
 // function LogoTitle() {
@@ -221,8 +216,40 @@ function MyTabs() {
 // });
 
 
+// inside of render() of react class
+<Button
+  title="Update the title"
+  onPress={() => navigation.setOptions({ title: "Updated!" })}
+/> 
 
 
+{/* <Button onPress={() => navigation.navigate('Ships')} title = "Ships" />
+      <Button onPress={() => navigation.navigate('Items')} title = "Items"/>
+      <Button onPress={() => navigation.navigate('Star Map')} title = "Star Map"/>
+      <Button onPress={() => navigation.navigate('Mining')} title = "Mining"/>
+      <Button onPress={() => navigation.navigate('Guides')} title = "Guides"/>
+      <Button onPress={() => navigation.navigate('Trading')} title = "Trading"/>
+      <Button onPress={() => navigation.navigate('Loadout')} title = "Loadout"/> */}
+
+
+//  function MyDrawer() {
+//   return (
+//     <Drawer.Navigator>
+//       <Drawer.Screen name="Feed" component={Feed} />
+//       <Drawer.Screen name="Article" component={Article} />
+//     </Drawer.Navigator>
+//   );
+// }
+
+
+// function MyTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Home" component={HomeScreen} />
+//       <Tab.Screen name="Settings" component={SettingsScreen} />
+//     </Tab.Navigator>
+//   );
+// }
 
 // const Cat = (props) => {
 //   const [isHungry, setIsHungry] = useState(true);
