@@ -110,9 +110,16 @@ function LoadoutScreen() {
 function App() {
   return(
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator 
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#091160",
+          }
+        }}
+      >
 
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{title: "Home", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
         <Stack.Screen name="Ships" component={ShipScreen} />
         <Stack.Screen name="Items" component={ItemScreen} />
         <Stack.Screen name="Star Map" component={StarMapScreen} />
@@ -134,9 +141,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    backgroundColor: "#fff",
+    backgroundColor: "#151E7A",
     padding: 20,
-    margin: 10,
+    //margin: 10,
   },
   text: {
     fontSize: 16,
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#151E7A",
+    backgroundColor: "#077EE5",
   }
 });
 
