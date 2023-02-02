@@ -158,11 +158,40 @@ function TradingScreen() {
 function LoadoutScreen() {
   return (
     <View style={styles.container}>
-      <Text>Loadout Manager screen</Text>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('View Loadouts')}>
+        <Text style={styles.text}>View Loadouts</Text>
+      </Pressable>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Create Loadout')}>
+        <Text style={styles.text}>View Loadouts</Text>
+      </Pressable>
     </View>
   );
 }
 
+function ViewLoadoutsScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>View Loadouts screen</Text>
+    </View>
+  );
+}
+
+function CreateLoadoutScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Create Loadout screen</Text>
+    </View>
+  );
+}
+
+const defaultStyles = {
+  title: "Default Title", 
+  headerTintColor: "#fff", 
+  headerTitleAlign: "center", 
+  headerTitleStyle: { 
+    fontWeight: "bold"
+  }
+};
 
 function App() {
   return(
@@ -176,22 +205,26 @@ function App() {
         }}
       >
 
-        <Stack.Screen name="Home" component={HomeScreen} options={{title: "Home", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Ships" component={ShipScreen} options={{title: "Ships", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Items" component={ItemScreen} options={{title: "Items", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Star Map" component={StarMapScreen} options={{title: "Star Map", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{title: "Home", ...defaultStyles }} />
+        <Stack.Screen name="Ships" component={ShipScreen} options={{title: "Ships", ...defaultStyles}} />
+        <Stack.Screen name="Items" component={ItemScreen} options={{title: "Items", ...defaultStyles}} />
+        <Stack.Screen name="Star Map" component={StarMapScreen} options={{title: "Star Map", ...defaultStyles}} />
 
-        <Stack.Screen name="Mining" component={MiningScreen} options={{title: "Mining", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Mining Calculator" component={MiningCalculatorScreen} options={{title: "Mining Claculator", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Mining" component={MiningScreen} options={{title: "Mining", ...defaultStyles}} />
+        <Stack.Screen name="Mining Calculator" component={MiningCalculatorScreen} options={{title: "Mining Calculator", ...defaultStyles}} />
 
-        <Stack.Screen name="Guides" component={GuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Mining Guides" component={MiningGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Location Guides" component={LocationGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Bounty Guides" component={BountyGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Misc Guides" component={MiscGuidesScreen} options={{title: "Guides", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Guides" component={GuidesScreen} options={{title: "Guides", ...defaultStyles}} />
+        <Stack.Screen name="Mining Guides" component={MiningGuidesScreen} options={{title: "Guides", ...defaultStyles}} />
+        <Stack.Screen name="Location Guides" component={LocationGuidesScreen} options={{title: "Guides", ...defaultStyles}} />
+        <Stack.Screen name="Bounty Guides" component={BountyGuidesScreen} options={{title: "Guides", ...defaultStyles}} />
+        <Stack.Screen name="Misc Guides" component={MiscGuidesScreen} options={{title: "Guides", ...defaultStyles}} />
 
-        <Stack.Screen name="Trading" component={TradingScreen} options={{title: "Trading", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
-        <Stack.Screen name="Loadout" component={LoadoutScreen} options={{title: "Loadouts", headerTintColor: "#fff", headerTitleAlign: "center", headerTitleStyle: {fontWeight: "bold"}}} />
+        <Stack.Screen name="Trading" component={TradingScreen} options={{title: "Trading", ...defaultStyles}} />
+
+        <Stack.Screen name="Loadout" component={LoadoutScreen} options={{title: "Loadouts", ...defaultStyles}} />
+        <Stack.Screen name="View Loadouts" component={ViewLoadoutsScreen} options={{title: "View Loadouts", ...defaultStyles}} />
+        <Stack.Screen name="Create Loadout" component={CreateLoadoutScreen} options={{title: "Create Loadout", ...defaultStyles}} />
+
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -205,7 +238,7 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
+    //justifyContent: "space-between",
     backgroundColor: "#151E7A",
     padding: 20,
     //margin: 10,
@@ -226,6 +259,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     elevation: 3,
     backgroundColor: "#077EE5",
+    marginBottom: 5,
   }
 });
 
