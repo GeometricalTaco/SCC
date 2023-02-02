@@ -1,7 +1,8 @@
 import "react-native-gesture-handler"
 import { StatusBar } from "expo-status-bar";
 import React, {useState} from "react";
-import { Button, Text, TextInput, View, Image, Pressable, ScrollView, FlatList, SectionList, StyleSheet } from "react-native";
+import { Button, Text, TextInput, View, Image, Pressable, ScrollView, FlatList, SectionList, StyleSheet, SafeAreaView } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -12,7 +13,7 @@ const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-
+const miningCommodities = ["Agricium", "Aluminium", "Beryl", "Bexalite", "Borase", "Copper", "Corundum", "Diamond", "Gold", "Hephaestanite", "Laranite", "Quantanium", "Quartz", "Taranite", "Titanium", "Tungsten"]
 
 function HomeScreen({ navigation }) {
   return (
@@ -50,7 +51,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function ShipScreen() {
+function ShipScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Ship screen</Text>
@@ -58,7 +59,7 @@ function ShipScreen() {
   );
 }
 
-function ItemScreen() {
+function ItemScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Items screen</Text>
@@ -66,7 +67,7 @@ function ItemScreen() {
   );
 }
 
-function StarMapScreen() {
+function StarMapScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Star Map screen</Text>
@@ -74,7 +75,7 @@ function StarMapScreen() {
   );
 }
 
-function MiningScreen() {
+function MiningScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* <Text>Mining screen</Text> */}
@@ -89,14 +90,35 @@ function MiningScreen() {
 }
 
 function MiningCalculatorScreen() {
+  const [number, onChangeNumber] = React.useState("");
+
   return (
     <View style={styles.container}>
-      <Text>Mining Calculator screen</Text>
+      <Text style={styles.text}>Mining Calculator screen</Text>
+      <SelectDropdown
+        data = {miningCommodities}
+        onSelect={(selectedItem, index) => {
+          console.log(selectedItem, index)
+        }}
+        buttonTextAfterSelection={(selectedItem, index) => {
+          return selectedItem
+        }}
+        rowTextForSelection={(item, index) => {
+          return item
+        }}
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="useless placeholder"
+        keyboardType="numeric"
+      />
     </View>
   );
 }
 
-function GuidesScreen() {
+function GuidesScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Pressable style={styles.buttons} onPress={() => navigation.navigate('Mining Guides')}>
@@ -115,7 +137,7 @@ function GuidesScreen() {
   );
 }
 
-function MiningGuidesScreen() {
+function MiningGuidesScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Guides screen</Text>
@@ -123,7 +145,7 @@ function MiningGuidesScreen() {
   );
 }
 
-function LocationGuidesScreen() {
+function LocationGuidesScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Guides screen</Text>
@@ -131,7 +153,7 @@ function LocationGuidesScreen() {
   );
 }
 
-function BountyGuidesScreen() {
+function BountyGuidesScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Guides screen</Text>
@@ -139,7 +161,7 @@ function BountyGuidesScreen() {
   );
 }
 
-function MiscGuidesScreen() {
+function MiscGuidesScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Guides screen</Text>
@@ -147,28 +169,49 @@ function MiscGuidesScreen() {
   );
 }
 
-function TradingScreen() {
+function TradingScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Trading screen</Text>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Popular Routes')}>
+        <Text style={styles.text}>Popular Trading Routes</Text>
+      </Pressable>
+      <Pressable style={styles.buttons} onPress={() => navigation.navigate('Trading Calculator')}>
+        <Text style={styles.text}>Trading Calculator</Text>
+      </Pressable>
     </View>
   );
 }
 
-function LoadoutScreen() {
+function PopularRoutesScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text>Popular Routes Screen</Text>
+    </View>
+  );
+}
+
+function TradingCalculatorScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text>Trading Calculator Screen</Text>
+    </View>
+  );
+}
+
+function LoadoutScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Pressable style={styles.buttons} onPress={() => navigation.navigate('View Loadouts')}>
         <Text style={styles.text}>View Loadouts</Text>
       </Pressable>
       <Pressable style={styles.buttons} onPress={() => navigation.navigate('Create Loadout')}>
-        <Text style={styles.text}>View Loadouts</Text>
+        <Text style={styles.text}>Create Loadout</Text>
       </Pressable>
     </View>
   );
 }
 
-function ViewLoadoutsScreen() {
+function ViewLoadoutsScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>View Loadouts screen</Text>
@@ -176,7 +219,7 @@ function ViewLoadoutsScreen() {
   );
 }
 
-function CreateLoadoutScreen() {
+function CreateLoadoutScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Create Loadout screen</Text>
@@ -185,7 +228,6 @@ function CreateLoadoutScreen() {
 }
 
 const defaultStyles = {
-  title: "Default Title", 
   headerTintColor: "#fff", 
   headerTitleAlign: "center", 
   headerTitleStyle: { 
@@ -220,6 +262,8 @@ function App() {
         <Stack.Screen name="Misc Guides" component={MiscGuidesScreen} options={{title: "Guides", ...defaultStyles}} />
 
         <Stack.Screen name="Trading" component={TradingScreen} options={{title: "Trading", ...defaultStyles}} />
+        <Stack.Screen name="Popular Routes" component={PopularRoutesScreen} options={{title: "Popular Routes", ...defaultStyles}} />
+        <Stack.Screen name="Trading Calculator" component={TradingCalculatorScreen} options={{title: "Trading Calculator", ...defaultStyles}} />
 
         <Stack.Screen name="Loadout" component={LoadoutScreen} options={{title: "Loadouts", ...defaultStyles}} />
         <Stack.Screen name="View Loadouts" component={ViewLoadoutsScreen} options={{title: "View Loadouts", ...defaultStyles}} />
@@ -260,7 +304,13 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: "#077EE5",
     marginBottom: 5,
-  }
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
 });
 
 
