@@ -13,7 +13,7 @@ const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const miningCommodities = ["Agricium", "Aluminium", "Beryl", "Bexalite", "Borase", "Copper", "Corundum", "Diamond", "Gold", "Hephaestanite", "Laranite", "Quantanium", "Quartz", "Taranite", "Titanium", "Tungsten"]
+
 
 function HomeScreen({ navigation }) {
   return (
@@ -89,16 +89,43 @@ function MiningScreen({ navigation }) {
   );
 }
 
+
+
+// Mining Calculator variables
+const miningCommodities = ["Agricium", "Aluminium", "Beryl", "Bexalite", "Borase", "Copper", "Corundum", "Diamond", "Gold", "Hephaestanite", "Laranite", "Quantanium", "Quartz", "Taranite", "Titanium", "Tungsten"]
+const commodityPrices = [["Agricium", 13.75, 27.50],
+                         ["Aluminium", 0.67, 1.30],
+                         ["Beryl", 2.21, 4.35],
+                         ["Bexalite", 20.33, 44.00],
+                         ["Borase", 16.29, 26.39],
+                         ["Copper", 2.87, 6.15],
+                         ["Corundum", 1.35, 2.71],
+                         ["Diamond", 3.68, 7.35],
+                         ["Gold", 3.20, 5.76],
+                         ["Hephaestanite", 7.38, 15.83],
+                         ["Laranite", 15.51, 31.00],
+                         ["Quantanium", 44.00, 88.00],
+                         ["Quartz", 0.78, 1.55],
+                         ["Taranite", 16.29, 35.19],
+                         ["Titanium", 4.47, 8.90],
+                         ["Tungsten", 2.05, 4.06]]
+let commodityIndex = 0
+let rockVolumecSCU = 0
+let mineralVolumecSCU = 0
+
+
 function MiningCalculatorScreen() {
-  const [number, onChangeNumber] = React.useState("");
+  const [rockMass, setMass] = useState('');
+  const [percentage, setPercentage] = useState('');
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Mining Calculator screen</Text>
+      {/* <Text style={styles.text}>Mining Calculator screen</Text> */}
       <SelectDropdown
         data = {miningCommodities}
+        defaultButtonText = "Select Commodity"
         onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index)
+          commodityIndex = index
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           return selectedItem
@@ -107,16 +134,40 @@ function MiningCalculatorScreen() {
           return item
         }}
       />
+
       <TextInput
+        value={rockMass}
         style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="useless placeholder"
+        placeholder="Enter Rock Mass:"
+        onChangeText={(rockMass) => {
+          setMass(rockMass)
+        }}
         keyboardType="numeric"
       />
+
+      <TextInput
+        value={percentage}
+        style={styles.input}
+        placeholder="Enter Mineral Percentage:"
+        onChangeText={(percentage) => {
+          setPercentage(percentage)
+        }}
+        keyboardType="numeric"
+      />
+
+      <Text style={styles.text}>Rock mass = {rockMass}</Text>
+      <Text style={styles.text}>Rock volume cSCU = {rockVolumecSCU = rockMass * 2}</Text>
+      <Text style={styles.text}>Percentage = {percentage}</Text>
+      <Text style={styles.text}>Mineral Volume cSCU = {mineralVolumecSCU = rockVolumecSCU * (percentage/100)}</Text>
+      <Text style={styles.text}>Mineral Volume SCU = {mineralVolumecSCU / 100}</Text>
+      <Text style={styles.text}>Raw Income (estimated) = {mineralVolumecSCU * commodityPrices[commodityIndex][1]}</Text>
+      <Text style={styles.text}>Refined Income (estimated) = {mineralVolumecSCU * commodityPrices[commodityIndex][2]}</Text>
+      <Text style={styles.text}>Junk SCU = {rockVolumecSCU * (1 - percentage/100) / 100}</Text>
     </View>
   );
 }
+
+
 
 function GuidesScreen({ navigation }) {
   return (
@@ -310,6 +361,8 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "white",
+    borderColor: "black"
   },
 });
 
