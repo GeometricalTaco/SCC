@@ -282,7 +282,8 @@ const defaultStyles = {
   headerTintColor: "#fff", 
   headerTitleAlign: "center", 
   headerTitleStyle: { 
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: 25
   }
 };
 
@@ -334,12 +335,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //justifyContent: "space-between",
-    backgroundColor: "#151E7A",
+    backgroundColor: "#1B279E",
     padding: 20,
     //margin: 10,
   },
   text: {
-    fontSize: 16,
+    fontSize: 19,
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
