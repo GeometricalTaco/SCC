@@ -278,12 +278,13 @@ function ViewLoadoutsScreen({ navigation }) {
 function CreateLoadoutScreen({ navigation }) {
   const [input, setInput] = useState("");
 
-  const saveData = async () => {
+  const saveData = async (value) => {
     try {
-      await AsyncStorage.setItem(STORAGE_KEY, age)
+      await AsyncStorage.setItem(STORAGE_KEY, value)
       alert("Data successfully saved")
     } catch (e) {
       alert("Failed to save the data to the storage")
+      console.log(e)
     }
   }
   
