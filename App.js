@@ -10,10 +10,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ShipData } from "./Ships"
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-let STORAGE_KEY = "@user_input";
+//let STORAGE_KEY = "@user_input";
 
 
 
@@ -274,76 +275,15 @@ function ViewLoadoutsScreen({ navigation }) {
 
 
 
-
 function CreateLoadoutScreen({ navigation }) {
-  const [input, setInput] = useState("");
-
-  const saveData = async (value) => {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, value)
-      alert("Data successfully saved")
-    } catch (e) {
-      alert("Failed to save the data to the storage")
-      console.log(e)
-    }
-  }
   
-  const readData = async () => {
-    try {
-      const value = await AsyncStorage.getItem(STORAGE_KEY);
-  
-      if (value !== null) {
-        setInput(value);
-      }
-    } catch (e) {
-      alert("Failed to fetch the input from storage");
-    }
-  };
-
-  useEffect(() => {
-    readData();
-  }, []);
-  
-  
-  const clearStorage = async () => {
-    try {
-      await AsyncStorage.clear();
-      alert("Storage successfully cleared!");
-    } catch (e) {
-      alert("Failed to clear the async storage.");
-    }
-  };
-  
-  const onChangeText = value => setInput(value);
-  
-  const onSubmitEditing = () => {
-    if (!input) return;
-  
-    saveData(input);
-    setInput("");
-  };
-
-  
-
   return (
     <View style={styles.container}>
-      <View style={styles.panel}>
-        <Text style={styles.label}>Enter your input here:</Text>
-        <TextInput
-          style={styles.inputField}
-          value={input}
-          placeholder="Enter"
-          onChangeText={onChangeText}
-          onSubmitEditing={onSubmitEditing}
-        />
-        <Text style={styles.text}>Your input is {input}</Text>
-        <Pressable onPress={clearStorage} style={styles.button}>
-          <Text style={styles.buttonText}>Clear Storage</Text>
-        </Pressable>
-      </View>
+      console.log()
     </View>
   );
 };
+
 
 
 
@@ -510,7 +450,75 @@ const styles = StyleSheet.create({
 // }
 
 
+// function CreateLoadoutScreen({ navigation }) {
+//   const [input, setInput] = useState("");
 
+//   const saveData = async (value) => {
+//     try {
+//       await AsyncStorage.setItem(STORAGE_KEY, value)
+//       alert("Data successfully saved")
+//     } catch (e) {
+//       alert("Failed to save the data to the storage")
+//       console.log(e)
+//     }
+//   }
+  
+//   const readData = async () => {
+//     try {
+//       const value = await AsyncStorage.getItem(STORAGE_KEY);
+  
+//       if (value !== null) {
+//         setInput(value);
+//       }
+//     } catch (e) {
+//       alert("Failed to fetch the input from storage");
+//     }
+//   };
+
+//   useEffect(() => {
+//     readData();
+//   }, []);
+  
+  
+//   const clearStorage = async () => {
+//     try {
+//       await AsyncStorage.clear();
+//       alert("Storage successfully cleared!");
+//     } catch (e) {
+//       alert("Failed to clear the async storage.");
+//     }
+//   };
+  
+//   const onChangeText = value => setInput(value);
+  
+//   const onSubmitEditing = () => {
+//     if (!input) return;
+  
+//     saveData(input);
+//     setInput("");
+//   };
+
+  
+
+//   return (
+//     <View style={styles.container}>
+//       <View style={styles.panel}>
+//         <Text style={styles.label}>Enter your input here:</Text>
+//         <TextInput
+//           style={styles.inputField}
+//           value={input}
+//           placeholder="Enter"
+//           onChangeText={onChangeText}
+//           onSubmitEditing={onSubmitEditing}
+//         />
+//         <Text style={styles.text}>Your input is {input}</Text>
+//         <Pressable onPress={clearStorage} style={styles.button}>
+//           <Text style={styles.buttonText}>Clear Storage</Text>
+//         </Pressable>
+//       </View>
+//     </View>
+//   );
+// };
 
 
 // const styles = StyleSheet.create({
