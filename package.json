@@ -18,8 +18,12 @@
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/native-stack": "^6.9.8",
     "@react-navigation/stack": "^6.3.11",
-    "expo": "^47.0.0",
+    "@realm/react": "^0.4.3",
+    "expo": "^47.0.13",
     "expo-status-bar": "~1.4.2",
+    "mongodb": "5.0",
+    "mongoose": "^6.9.0",
+    "node-libs-react-native": "^1.2.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
@@ -29,10 +33,23 @@
     "react-native-screens": "~3.18.0",
     "react-native-select-dropdown": "^3.2.1",
     "react-native-web": "~0.18.7",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "realm": "^11.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3"
   },
-  "private": true
+  "private": true,
+  "description": "This project is an app for Star Citizen which I am developing for my A-Level Computer Science NEA.\r I am also partially developing it as a personal project, and I plan to continue development past what is required for the NEA.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeometricalTaco/SCC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeometricalTaco/SCC/issues"
+  },
+  "homepage": "https://github.com/GeometricalTaco/SCC#readme"
 }

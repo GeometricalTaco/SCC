@@ -3,18 +3,15 @@ import { StatusBar } from "expo-status-bar";
 import React, {useState, useEffect} from "react";
 import { Button, Text, TextInput, View, Image, Pressable, ScrollView, FlatList, SectionList, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ShipData } from "./Ships"
+import { fetchShips } from './database';
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-//let STORAGE_KEY = "@user_input";
+
 
 
 
@@ -54,13 +51,39 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function ShipScreen({ navigation }) {
+
+function ShipScreen ({ navigation }) {
+  const [ships, setShips] = useState([]);
+
+  useEffect(() => {
+    const ships = fetchShips();
+    setShips(ships);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Ship screen</Text>
+      <ScrollView>
+        {ships.map((item) => {
+          return (
+            <View style={styles.shipContainer} key={item.name}>
+              <Image
+                // source={require(`./assets/icons/${item.manufacturer.toLowerCase()}/${item.name.toLowerCase()}.png`)}
+                source={require(`./assets/icons/aegis dynamics/sabre.png`)}
+                style={styles.icon}
+              />
+              <View style={styles.textContainer}>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.manufacturer}>{item.manufacturer}</Text>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
-}
+};
+
+
 
 function ItemScreen({ navigation }) {
   return (
@@ -402,6 +425,25 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#444",
   },
+  shipContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 16
+  },
+  icon: {
+    width: 64,
+    height: 64,
+    marginRight: 16
+  },
+  textContainer: {
+    marginLeft: 10
+  },
+  manufacturer: {
+    fontWeight: "bold"
+  },
+  name: {
+    fontSize: 16
+  }
 });
 
 
@@ -479,6 +521,28 @@ const styles = StyleSheet.create({
 //     readData();
 //   }, []);
   
+
+// const uri =
+//   "mongodb+srv://GeometricalTaco:<password>@cluster0.tg509bj.mongodb.net/?retryWrites=true&w=majority";
+
+// const client = new MongoClient(uri);
+
+// async function run() {
+//   try {
+//     const database = client.db('sample_mflix');
+//     const movies = database.collection('movies');
+
+//     // Query for a movie that has the title 'Back to the Future'
+//     const query = { title: 'Back to the Future' };
+//     const movie = await movies.findOne(query);
+
+//     console.log(movie);
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await client.close();
+//   }
+// }
+// run().catch(console.dir);
   
 //   const clearStorage = async () => {
 //     try {
